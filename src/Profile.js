@@ -1,34 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { API_URL } from "./App";
 import { Link } from "react-router-dom";
 
-const Profile = ({ user }) => {
+const Profile = ({ user, lstoken, fetchPosts, fetchUser }) => {
   const [posts, setPosts] = useState([]);
+  const [error, setError] = useState("");
 
+  useEffect(() => {
+    fetchPosts();
+  }, []);
   useEffect(() => {
     setPosts(user.posts);
   }, [user]);
-
-  const handleSubmitDelete = async (e) => {
-    e.preventDefault();
-
-    const response = await fetch(`${API_URL}/posts/${post._id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${lstoken}`,
-      },
-    });
-    const info = await response.json();
-
-    if (info.error) {
-      return setError(info.error.message);
-    }
-    history.push("/posts");
-  };
-  // console.log("DATA", user);
-  // console.log("POSTS", user.posts);
-  // console.log("UserData:", user);
 
   return (
     <div id="profile-main">
@@ -75,9 +57,9 @@ const Profile = ({ user }) => {
                     <h5></h5>Location: {post.location}
                   </div>
 
-                  <button onClick={() => handleSubmitDelete(post._id)}>
+                  {/* <button onClick={() => handleSubmitDelete(post._id)}>
                     Delete
-                  </button>
+                  </button> */}
                   <Link id="send-message" to={`/posts/edit/${post._id}`}>
                     <button>Edit</button>
                   </Link>

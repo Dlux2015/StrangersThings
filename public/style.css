@@ -39,18 +39,8 @@ body > div {
 #post-header-1 {
   margin-left: 430px;
 }
-#search-form {
-  /* float: right; */
 
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-}
 #search-form-1 {
-  /* float: right; */
   margin-left: 140px;
   display: flex;
   flex-direction: row;
@@ -117,6 +107,10 @@ body > div {
   align-self: center;
   background-color: white;
 }
+#new-post,
+#deliver {
+  color: green;
+}
 /* NavBar */
 #header-link:nth-child(1n + 2) {
   margin-right: 20px;
@@ -167,8 +161,6 @@ body > div {
   font-size: 24px;
 }
 /* Register */
-#register-header {
-}
 
 #register {
   display: flex;

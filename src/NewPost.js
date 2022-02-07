@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { API_URL } from "./App";
 
-const NewPost = ({ lstoken }) => {
+const NewPost = ({ lstoken, fetchPosts }) => {
   const history = useHistory();
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
   const [price, setPrice] = useState([]);
   const [location, setLocation] = useState([]);
-  const [willDeliver, setWillDeliver] = useState([false]);
+  const [willDeliver, setWillDeliver] = useState([true]);
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -35,13 +35,14 @@ const NewPost = ({ lstoken }) => {
     if (info.error) {
       return setError(info.error.message);
     }
+    fetchPosts();
     history.push("/posts");
   };
 
   return (
     <>
       <form id="new-post-form" onSubmit={handleSubmit}>
-        <h2>New Post</h2>
+        <h2 id="new-post">New Post</h2>
         <input
           type="text"
           placeholder="What are you selling?"
@@ -66,10 +67,10 @@ const NewPost = ({ lstoken }) => {
           onChange={(e) => setLocation(e.target.value)}
           value={location}
         ></input>
-        <label>
+        <label id="deliver">
           Are you willing to deliver?
           <select onChange={(e) => setWillDeliver(e.target.value)}>
-            <option value={false}>No</option>
+            <option value={true}>No</option>
             <option value={true}>Yes</option>
           </select>
         </label>

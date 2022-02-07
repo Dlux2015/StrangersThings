@@ -2,7 +2,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useState } from "react";
 import { API_URL } from "./App";
 
-const MessageForm = ({ posts, lstoken }) => {
+const MessageForm = ({ posts, lstoken, fetchPosts, fetchUser }) => {
   const { id } = useParams();
   const post = posts.find((post) => id === post._id);
   const [content, setContent] = useState("");
@@ -29,6 +29,8 @@ const MessageForm = ({ posts, lstoken }) => {
       return setError(info.error.message);
     }
     console.log(content);
+    fetchPosts();
+    fetchUser();
     history.push(`/profile`);
   };
 

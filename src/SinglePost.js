@@ -6,7 +6,7 @@ import {
 } from "react-router-dom/cjs/react-router-dom.min";
 import { API_URL } from "./App";
 
-const PostSingle = ({ posts, lstoken }) => {
+const PostSingle = ({ posts, lstoken, fetchPosts }) => {
   if (posts.length === 0) return <div></div>;
   const { id } = useParams();
   const post = posts.find((post) => id == post._id);
@@ -28,6 +28,7 @@ const PostSingle = ({ posts, lstoken }) => {
     if (info.error) {
       return setError(info.error.message);
     }
+    fetchPosts();
     history.push("/posts");
   };
 

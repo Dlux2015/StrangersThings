@@ -1,12 +1,9 @@
 import React from "react";
-import {
-  useParams,
-  useHistory,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom";
 import { useState } from "react";
 import { API_URL } from "./App";
 
-const PostEdit = ({ posts, lstoken }) => {
+const PostEdit = ({ posts, lstoken, fetchPosts }) => {
   const { id } = useParams();
   const { title, description, price, location, willDeliver } = posts.filter(
     (post) => post._id === id
@@ -50,6 +47,7 @@ const PostEdit = ({ posts, lstoken }) => {
     }
     console.log(post.price);
     console.log("it works");
+    fetchPosts();
     history.push("/posts");
   };
 

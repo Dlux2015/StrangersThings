@@ -109,7 +109,7 @@ const App = () => {
             </Route>
 
             <Route exact path="/newpost">
-              <NewPost lstoken={lstoken} />
+              <NewPost lstoken={lstoken} fetchPosts={fetchPosts} />
             </Route>
 
             <Route exact path="/posts/:id">
@@ -118,11 +118,16 @@ const App = () => {
                 setPosts={setPosts}
                 posts={posts}
                 lstoken={lstoken}
+                fetchPosts={fetchPosts}
               />
             </Route>
 
             <Route exact path="/posts/edit/:id">
-              <PostEdit posts={posts} lstoken={lstoken} />
+              <PostEdit
+                posts={posts}
+                lstoken={lstoken}
+                fetchPosts={fetchPosts}
+              />
             </Route>
 
             <Route exact path="/login">
@@ -130,7 +135,12 @@ const App = () => {
             </Route>
 
             <Route exact path="/posts/message/:id">
-              <MessageForm posts={posts} lstoken={lstoken} />
+              <MessageForm
+                posts={posts}
+                lstoken={lstoken}
+                fetchPosts={fetchPosts}
+                fetchUser={fetchUser}
+              />
             </Route>
 
             <Route exact path="/Profile">
@@ -139,6 +149,9 @@ const App = () => {
                 posts={posts}
                 setPosts={setPosts}
                 userPost={userPost}
+                lstoken={lstoken}
+                fetchPosts={fetchPosts}
+                fetchUser={fetchUser}
               />
             </Route>
           </div>
